@@ -17,7 +17,7 @@ public class playerCredits : MonoBehaviour {
 		currentCredits += value;
 	}
 
-	public void initLevel(){
+	public void initLevel(){ // Important to call this to enable Saving of coins
 		Debug.Log ("*** Coins Updated in Prefs!");
 		bankCredits += currentCredits;
 		currentCredits = 0;
