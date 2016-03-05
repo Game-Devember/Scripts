@@ -16,30 +16,30 @@ public class lennyCarControls : MonoBehaviour {
 			moveRight = 0;
 			presentLane=1;
 			gameObject.GetComponent<Animation>().Play("normalisePostRight");
-			Debug.Log ("RighLane");
+			//Debug.Log ("RighLane");
 		}
 
 		if (other.gameObject.tag == "leftLane") {
 			moveLeft = 0;
 			presentLane=-1;
 			gameObject.GetComponent<Animation>().Play("normalisePostLeft");
-			Debug.Log ("LeftLane");
+			//Debug.Log ("LeftLane");
 		}
 		if (other.gameObject.tag == "centreLane") {
 			presentLane=0;
 			if(moveLeft==1)
 			{
-				Debug.Log ("Play post left");
+				//Debug.Log ("Play post left");
 				moveLeft = 0;
 				gameObject.GetComponent<Animation>().Play("normalisePostLeft");
 			}
 			if(moveRight==1)
 			{
-				Debug.Log ("Play post right");
+				//Debug.Log ("Play post right");
 				moveRight = 0;
 				gameObject.GetComponent<Animation>().Play("normalisePostRight");
 			}
-			Debug.Log ("centreLane");
+			//Debug.Log ("centreLane");
 		}
 	}
 	// Update is called once per frame
