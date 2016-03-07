@@ -6,6 +6,7 @@ public class lennyCarControls : MonoBehaviour {
 	int moveRight=0;
 	float targetLane=0;
 	int presentLane=0;
+	public int speed = 1;
 	// Use this for initialization
 	void Start () {
 	
@@ -45,7 +46,7 @@ public class lennyCarControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 10);
+		GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 10*speed);
 
 	  if(Input.GetMouseButtonDown(0))
 		   {
