@@ -22,7 +22,9 @@ public class coinCollector : MonoBehaviour {
 		gameMaster.SendMessage("addCoins",value);
 	}
 	
-	public void requestDestroy(GameObject gOb){
+	public IEnumerator requestDestroy(GameObject gOb){
+		gOb.GetComponent<Renderer>().enabled = false;
+		yield return new WaitForSeconds(1);
 		Destroy(gOb);
 	}
 }

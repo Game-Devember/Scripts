@@ -24,3 +24,9 @@ function receiveDamage(amount: int){
 	
 	}
 }
+
+function requestDestroy(gOb: GameObject){
+	gOb.GetComponent.<Renderer>().enabled = false;
+	yield WaitForSeconds(2);
+	Destroy(gOb);
+}

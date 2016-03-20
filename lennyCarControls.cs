@@ -6,7 +6,8 @@ public class lennyCarControls : MonoBehaviour {
 	int moveRight=0;
 	float targetLane=0;
 	int presentLane=0;
-	public int speed = 1;
+	public GameObject gameController;
+	public static float lenRodSpeed=40;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,36 +18,46 @@ public class lennyCarControls : MonoBehaviour {
 			moveRight = 0;
 			presentLane=1;
 			gameObject.GetComponent<Animation>().Play("normalisePostRight");
-			//Debug.Log ("RighLane");
+			Debug.Log ("RighLane");
 		}
 
 		if (other.gameObject.tag == "leftLane") {
 			moveLeft = 0;
 			presentLane=-1;
 			gameObject.GetComponent<Animation>().Play("normalisePostLeft");
-			//Debug.Log ("LeftLane");
+			Debug.Log ("LeftLane");
 		}
 		if (other.gameObject.tag == "centreLane") {
 			presentLane=0;
 			if(moveLeft==1)
 			{
-				//Debug.Log ("Play post left");
+				Debug.Log ("Play post left");
 				moveLeft = 0;
 				gameObject.GetComponent<Animation>().Play("normalisePostLeft");
 			}
 			if(moveRight==1)
 			{
-				//Debug.Log ("Play post right");
+				Debug.Log ("Play post right");
 				moveRight = 0;
 				gameObject.GetComponent<Animation>().Play("normalisePostRight");
 			}
-			//Debug.Log ("centreLane");
+			Debug.Log ("centreLane");
+		}
+		if (other.gameObject.tag == "deletionTrigger") 
+		{
+			Debug.Log ("Entered deletion trigger");
+			gameController.GetComponent<moduleDeletion>().delete(other.transform.parent.gameObject);
+		}
+		if (other.gameObject.tag == "spawnTrigger") 
+		{
+			Debug.Log ("Entered spawn trigger");
+			gameController.GetComponent<moduleSpawn>().spawn=true;
 		}
 	}
 	// Update is called once per frame
 	void Update ()
 	{
-		GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 10*speed);
+		GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, lenRodSpeed);
 
 	  if(Input.GetMouseButtonDown(0))
 		   {
@@ -66,7 +77,7 @@ public class lennyCarControls : MonoBehaviour {
 			Vector3 pos = GetComponent<Rigidbody> ().position;
 			pos.x = Mathf.MoveTowards (pos.x, targetLane, Time.deltaTime * 30);
 			GetComponent<Rigidbody> ().position = pos;
-			GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 10);
+			GetComponent<Rigidbody>().velocity = new Vector3 (0, 0,lenRodSpeed);
 
 			}
 		if(moveRight==1)
@@ -75,7 +86,7 @@ public class lennyCarControls : MonoBehaviour {
 			Vector3 pos = GetComponent<Rigidbody> ().position;
 			pos.x = Mathf.MoveTowards (pos.x, targetLane, Time.deltaTime * 30);
 			GetComponent<Rigidbody> ().position = pos;
-			GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 10);
+			GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, lenRodSpeed);
 			
 		}
 
@@ -95,8 +106,6 @@ public void downSwipe()
 			transform.Rotate (new Vector3 (0, 0, -30));
 
 	}
-
-
 
 	
 }
