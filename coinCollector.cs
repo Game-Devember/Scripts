@@ -5,7 +5,7 @@ public class coinCollector : MonoBehaviour {
 
 	GameObject gameMaster;
 	void Start () {
-		gameMaster =  GameObject.Find("gameController");
+		gameMaster =  GameObject.Find("GameController");
 	}
 	
 	// Update is called once per frame

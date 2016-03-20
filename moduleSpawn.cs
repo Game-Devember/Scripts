@@ -8,8 +8,8 @@ public class moduleSpawn : MonoBehaviour {
 	public GameObject[] spawnedModules;
 	int i;
 	int module;
-	float loc=180;
-	float moduleLength=180;
+	float loc=492;
+	float moduleLength=246;
 	int moduleCount=0;
 	public int modules=3;
 	public bool spawn;

@@ -13,7 +13,8 @@ public class shiftDetector : MonoBehaviour {
 	
 	}
  void OnTriggerEnter(Collider other)
-	{
+	{   
+		Debug.Log ("Entered normalise Trigge");
 		car.GetComponent<lennyCarControls>().normalise(other);
 	    
 	}
