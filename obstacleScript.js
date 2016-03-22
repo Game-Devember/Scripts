@@ -3,9 +3,10 @@
 public var obstacleDamage : int = 1;
 public var movingForward : boolean = false;
 public var movingSideways : boolean = false;
-public var jumping : boolean = false;
 public var movingSpeed : int = 1.0;
 public var obstacleSound : AudioClip;
+public var enable : boolean = false;
+private var jumpLock : boolean = false;
 
 function Start () {
 	gameObject.tag = "obstacle";
@@ -17,11 +18,11 @@ function Start () {
 }
 
 function Update () {
-	if(movingForward) moveForward();
-	if(movingSideways) {
-		
+	if(enable){
+		if(movingForward) moveForward();
+		if(movingSideways) moveSide();
+		enable = false;
 	}
-	if(jumping);
 }
 
 function  OnTriggerEnter(other: Collider) {
@@ -31,7 +32,9 @@ function  OnTriggerEnter(other: Collider) {
 		other.gameObject.SendMessage("requestDestroy",gameObject);
 	}
 }
-
+function moveSide(){
+	GetComponent.<Rigidbody>().velocity = new Vector3(1 * Time.deltaTime * movingSpeed * 30,0,0);
+}
 function moveForward(){
-	transform.Translate(0,0,-1*Time.deltaTime*movingSpeed);
+	GetComponent.<Rigidbody>().velocity = new Vector3(0,0,-1*Time.deltaTime*movingSpeed*30);
 }
